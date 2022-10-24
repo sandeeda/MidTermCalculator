@@ -27,6 +27,11 @@ public class Calculator{
         if(numberString.length()<12) {  // limit of 12 digits
             intNumber = intNumber * 10 + i;
             numberString = String.valueOf(intNumber);
+            if(detailsString.length()>0 && detailsString.charAt(0)==('M')){
+                detailsString ="";
+                numberString = "";
+               // operationString = "":
+            }
             if(detailsString=="")
                 detailsString = "Input: "+i;
             else
@@ -44,6 +49,7 @@ public class Calculator{
         isIntNumber=true;
         numHasRadixPoint=false;
         operationString = "";
+        memoryInt = 0;
     }
 
     public void memPlusClicked() {
@@ -56,6 +62,10 @@ public class Calculator{
                 isIntNumber=false;
                 memoryDouble = memoryInt + realNumber;
             }
+            operationString = "";
+            numberString = "";
+            intNumber = 0;
+
         }
     }
 
@@ -97,5 +107,30 @@ public class Calculator{
         double result = BodmasCalc.solve_this(operationString);
         intNumber = (int) result;
         numberString = String.valueOf(result);
+        operationString = numberString;
+    }
+
+    public void memMinusClicked() {
+        if(isIntMemory){
+            if(isIntNumber) {
+                memoryInt -= intNumber;
+                detailsString = "Memory: "+memoryInt;
+            }
+            else {
+                isIntNumber=false;
+                memoryDouble = memoryInt + realNumber;
+            }
+            operationString = "";
+            numberString = "";
+            intNumber = 0;
+
+        }
+    }
+
+    public void memoryRecall() {
+        intNumber =  memoryInt;
+        numberString = String.valueOf(memoryInt);
+        //operationString = String.valueOf(memoryInt);
+        detailsString = "Input: "+memoryInt;
     }
 }

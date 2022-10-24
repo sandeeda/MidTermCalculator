@@ -66,4 +66,15 @@ public class MainActivity extends AppCompatActivity {
         }
         updateCalcUI();
     }
+
+    public void memMinusClicked(View view) {
+        calculator.memMinusClicked();
+        updateCalcUI();
+    }
+
+    public void memoryRecall(View view) {
+        calculator.memoryRecall();
+        updateCalcUI();
+        //calculator.operationString = "";
+    }
 }
